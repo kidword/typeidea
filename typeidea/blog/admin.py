@@ -16,6 +16,10 @@ class CategoryAdmin(admin.ModelAdmin):
         obj.owner = request.user
         return super(CategoryAdmin, self).save_model(request, obj, form, change)
 
+    def post_count(self, obj):
+        return obj.post_set.count()
+    post_count.short_description = '文章数量'
+
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
